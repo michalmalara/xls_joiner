@@ -18,6 +18,7 @@ class Ui(QtWidgets.QMainWindow):
         self.lblSourcePath = self.findChild(QtWidgets.QLabel, 'lblSourcePath')
         self.lblTargetPath = self.findChild(QtWidgets.QLabel, 'lblTargetPath')
         self.lblCurrentFile = self.findChild(QtWidgets.QLabel, 'lblCurrentFile')
+        self.progressBar = self.findChild(QtWidgets.QProgressBar, 'progressBar')
 
         self.btnPickSource.clicked.connect(self.pickFiles)
         self.btnPickTarget.clicked.connect(self.setTargetFile)
@@ -47,6 +48,7 @@ class Ui(QtWidgets.QMainWindow):
             self.target = fileName
 
     def joinFiles(self):
+
         done = False
         try:
             if len(self.files) > 0 and len(self.target) > 0:
@@ -73,10 +75,13 @@ class Ui(QtWidgets.QMainWindow):
         x = msg.exec_()
 
     def executeJoin(self, filelist, targetFile):
+        totalFilesNum = len(filelist)
+        filesDone = 0
         try:
             self.lblCurrentFile.setText(filelist[0])
             result = pd.read_excel(filelist.pop(), header=1)
-
+            filesDone+=1
+            self.progressBar.setValue(int((filesDone/totalFilesNum)*100))
         except Exception as e:
             print('Błąd: ', e)
         for file in filelist:
@@ -84,6 +89,8 @@ class Ui(QtWidgets.QMainWindow):
                 file_content = pd.read_excel(file, header=1)
                 self.lblCurrentFile.setText(file)
                 result = pd.concat([result, file_content])
+                filesDone += 1
+                self.progressBar.setValue(int((filesDone / totalFilesNum) * 100))
             except Exception as e:
                 print('Błąd: ', e)
 
