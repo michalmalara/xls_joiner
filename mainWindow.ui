@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>793</width>
-    <height>308</height>
+    <height>338</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Excel Joiner</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="verticalLayoutWidget">
@@ -20,7 +20,7 @@
       <x>0</x>
       <y>30</y>
       <width>791</width>
-      <height>104</height>
+      <height>114</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -103,13 +103,31 @@
        </item>
       </layout>
      </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="20,80">
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Aktualnie przetwarzany plik:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblCurrentFile">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
     </layout>
    </widget>
    <widget class="QPushButton" name="btnStart">
     <property name="geometry">
      <rect>
       <x>270</x>
-      <y>150</y>
+      <y>190</y>
       <width>211</width>
       <height>101</height>
      </rect>
